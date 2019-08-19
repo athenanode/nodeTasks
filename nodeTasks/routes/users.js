@@ -6,4 +6,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.post('/signup/signup_submit', userController.validateSignUp);
+
 module.exports = router;
