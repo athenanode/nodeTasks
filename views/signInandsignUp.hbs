@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login Form Tutorial</title>
+		
+		<style>
+
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+  
+	</head>
+	<body>
+<script>
+$(document).ready(function(){
+  $("#SignIn").click(function(){
+    $("#signinfrm").show();
+    $("#signupfrm").hide();
+  });
+  $("#SignUp").click(function(){
+    $("#signinfrm").hide();
+    $("#signupfrm").show();
+  });
+});
+</script>
+</head>
+<body>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> <a href="#" id="SignIn">Sign In</a> </h2>
+    <h2 class="inactive underlineHover"><a href="#" id="SignUp">Sign Up </a></h2>
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+     
+    </div>
+
+    <!-- Login Form -->
+   <form action="auth" method="POST" id="signinfrm">
+				<input type="text" name="email" placeholder="Email" class="second" required>
+				<input type="password" name="password" class="third" placeholder="Password" required>
+				<input type="submit">
+			</form>
+
+ <form action="signup" method="POST" id="signupfrm">
+ 	<input type="text" name="name" placeholder="User Name" class="first" required>
+  <input type="text" name="role" placeholder="User Role" class="second" required>
+				<input type="text" name="email" placeholder="Email" class="third" required>
+				<input type="password" name="password" class="fourth" placeholder="Password" required>
+				<input type="submit">
+			</form>
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+		
+	</body>
+</html>
