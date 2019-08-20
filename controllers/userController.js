@@ -1,5 +1,6 @@
 var db = require("../config/dbCon");
 var bcrypt = require("bcrypt");
+var nodemailer = require('nodemailer');
 var connection = db.connection;
 var userModel = require("../models/user").User;
 
@@ -26,7 +27,7 @@ exports.loginUserPost = function(request, response) {
             request.session.email = email;
             response.redirect("/home");
           } else {
-            response.end(" Incorrect Password!");
+            response.end("Incorrect Password!");
           }
         });
       }
@@ -83,5 +84,36 @@ exports.validateSignUp = function(req, res) {
           res.redirect("/");
         });
     });
+   
+
+//sendind mail code start
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        type: "SMTP",
+        host: "smtp.gmail.com",
+        secure: true,
+        auth: {
+          user: 'kirti.sharma@athenalogics.com',
+          pass: 'athena@123123'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'kirti.sharma@athenalogics.com',
+        to: 'kirti.sharma@athenalogics.com',
+        subject: 'Sending Email to test Node.js nodemailer',
+        text: 'That was easy to test!'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent');
+        }
+      });
+
+//sendind mail code end
+
   }
 };

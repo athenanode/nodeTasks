@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon inspect ./bin/www"
+    "start": "nodemon start ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -19,6 +19,8 @@
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
-    "sequelize": "^5.15.1"
+    "nodemailer": "^6.3.0",
+    "sequelize": "^5.15.1",
+    "smtp": "^0.1.4"
   }
 }
