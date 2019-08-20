@@ -10,10 +10,8 @@ router.get('/', userController.loginUserGet);
 router.post('/auth', userController.loginUserPost);
 router.post('/signup', userController.validateSignUp);
 router.post('/createtasklist', tasklistController.createTaskList);
-router.post('/createtask', tasklistController.createTaskList);
+router.post('/tasklist/:id/createtask', taskController.createTask);
 router.get('/createtasklist', tasklistController.createTaskListGet);
-
-
-
+router.get('/tasklist/:id', taskController.getTasks);
 
 module.exports = router;

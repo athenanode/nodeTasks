@@ -5,12 +5,6 @@ var userModel = require("../models/user");
 
 exports.loginUserPost = function(request, response) {
   
-  //var errors = request.validationErrors();
-
-  // connection.query(
-  //   "SELECT email, password FROM users WHERE email = ?",
-  //   [email],
-  // );
   userModel.findAll({
     where: {
       email : request.body.email
@@ -82,7 +76,13 @@ var loginAuth = function (results, request, response) {
         request.session.loggedin = true;
         request.session.email = request.body.email;
         request.session.userid=results[0].id;
-        response.redirect("/home");
+        if(results[0].id == 1){
+          response.redirect('/admin');  
+        }
+        else{
+          response.redirect("/home");
+        }
+        
       } else {
         response.end(" Incorrect Password!");
       }
