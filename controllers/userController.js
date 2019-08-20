@@ -1,37 +1,30 @@
 var db = require("../config/dbCon");
 var bcrypt = require("bcrypt");
 var connection = db.connection;
-var userModel = require("../models/user").User;
+var userModel = require("../models/user");
 
 exports.loginUserPost = function(request, response) {
-  var email = request.body.email;
-  var password = request.body.password;
+  
   //var errors = request.validationErrors();
 
-  connection.query(
-    "SELECT email, password FROM users WHERE email = ?",
-    [email],
-    function(err, results, fields) {
-      if (err) {
-        console.error(err);
-      }
-
-      if (results == 0) {
-        response.send("Incorrect Username");
-      } else {
-        var encPass = results[0].password;
-        bcrypt.compare(password, encPass, function(err, same) {
-          if (same) {
-            request.session.loggedin = true;
-            request.session.email = email;
-            response.redirect("/home");
-          } else {
-            response.end(" Incorrect Password!");
-          }
-        });
-      }
+  // connection.query(
+  //   "SELECT email, password FROM users WHERE email = ?",
+  //   [email],
+  // );
+  userModel.findAll({
+    where: {
+      email : request.body.email
     }
-  );
+  }).then(users=>{
+    if(users.length == 0){
+      response.end('User does not exists!')
+    } 
+    else{
+      loginAuth(users, request, response);
+    }
+  });
+
+
 };
 
 exports.loginUserGet = function(request, response) {
@@ -43,45 +36,56 @@ exports.loginUserGet = function(request, response) {
 };
 
 exports.validateSignUp = function(req, res) {
-  var name = req.body.name;
-  var email = req.body.email;
+
   var password;
-  connection.query(
-    "SELECT email, password from users WHERE email = ?",
-    [email],
-    function(err, results, fields) {
-      console.log(results == 0);
-      if (results == 0) {
-        createUser();
-      } else {
-        res.header("Content-Type", "text/html");
-        res.end("user already exists!");
-      }
+  
+  userModel.findAll({
+    where: {
+      email : req.body.email
     }
-  );
+  }).then(users=>{
+    if(users.length == 0){
+      createUser();
+    } 
+    else{
+      res.end('User already exists!')
+    }
+  });
+
+
+  
   function createUser() {
     bcrypt.hash(req.body.password, 3, function(err, encrypted) {
       if (err) {
         console.error(err);
       }
-      password = encrypted;
-      // connection.query('INSERT INTO users (email, password, name) VALUES (? , ? , ?)', [email, password, name], function(err, results, fields){
-      //     if(err){
-      //         console.error(err);
-      //     }
-      //     res.header('Content-Type', 'text/html');
-      //     res.end(JSON.stringify(results));
-      // })
 
       userModel
         .create({
           name: req.body.name,
           email: req.body.email,
-          password: password,
+          password: encrypted,
         })
         .then(function() {
           res.redirect("/");
         });
+      
+
     });
   }
 };
+
+var loginAuth = function (results, request, response) {
+    var encPass = results[0].password;
+    bcrypt.compare(request.body.password, encPass, function(err, same) {
+      if (same) {
+        request.session.loggedin = true;
+        request.session.email = request.body.email;
+        request.session.userid=results[0].id;
+        response.redirect("/home");
+      } else {
+        response.end(" Incorrect Password!");
+      }
+    });
+  
+}

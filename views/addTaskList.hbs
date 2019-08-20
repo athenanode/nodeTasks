@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <title>add tasklist</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="/javascripts/createTaskList.js"></script>
+
+</head>
+
+<body>
+    <button onclick="addtasklist()">Add Tasklist</button>
+    <form action="createtasklist" method="POST">
+        <input name="tasklistname" placeholder="tasklist name" type="text" required />
+        <button type="submit">create tasklist</button>
+        <button type="button" onclick="addTask()">add task</button>
+        <br/>
+        <div id="taskFormDiv">
+            
+        </div>
+    </form>
+</body>
+
+</html>

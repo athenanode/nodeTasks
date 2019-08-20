@@ -7,9 +7,5 @@ var User = sequelize.define("users", {
   password: Sequelize.STRING
 });
 
-User.associate = function(models) {
-  User.hasMany(models.Task);
-};
-
 sequelize.sync();
-module.exports.User = User;
+module.exports = User;

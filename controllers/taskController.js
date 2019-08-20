@@ -1,12 +1,16 @@
-var taskModel = require("../models/user").Task;
+var task = require("../models/task");
 
-exports.createTask = function (req,resp) {
-    let title = req.body.title
-    let description = req.body.description
-
-    taskModel.create({
-        title : title,
-        description : description
+exports.createTask = function (req , res) {
+    
+    task.create({
+        title : req.body.title,
+        description : req.body.description,
+        userId : req.session.userid,
+        tasklistId : req.body.tasklistId
+    }).then(function(){
+        res.end('Created')
     })
+
+    
     
 }
