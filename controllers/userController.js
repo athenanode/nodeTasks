@@ -1,6 +1,7 @@
 var db = require("../config/dbCon");
 var bcrypt = require("bcrypt");
 var nodemailer = require('nodemailer');
+//var hbs = require('hbs');
 var connection = db.connection;
 var userModel = require("../models/user").User;
 
@@ -81,13 +82,50 @@ exports.validateSignUp = function(req, res) {
           password: password,
         })
         .then(function() {
-          res.redirect("/");
+          //let userlist = getUserList();
+
+          connection.query('SELECT * FROM users', (error, results, fields) => 
+          {
+              console.log('we did a query');
+              if(error) 
+              {
+                  console.log("Error: ",error);
+                  res.send({
+                      "code": 400,
+                      "failed": "Error occurred"
+                  });
+              } else {
+                  console.log("Results: ",results);
+                  /*res.send({
+                      "code": 200,
+                      "success": "Database successfully logged"
+                  });*/
+                  connection.query('SELECT * FROM tasks', (error, tasklist, fields) => 
+          {
+
+         
+
+                  res.render('home', {user: results, task: tasklist});
+                  });          
+              }
+          });
+
+
+         // res.render("home",{user : userlist});
+           //res.redirect("/home");
         });
+
     });
+  
+  /*  let getUserList = () => {
+      let list = ["ada","turing","ssss","dddd"];
+      let limt = Math.floor(Math.random()*(list.length - 1 - 0) + 0);
+      return list.slice(limt);
+    }*/
    
 
 //sendind mail code start
-      var transporter = nodemailer.createTransport({
+     /* var transporter = nodemailer.createTransport({
         service: 'gmail',
         type: "SMTP",
         host: "smtp.gmail.com",
@@ -112,6 +150,7 @@ exports.validateSignUp = function(req, res) {
           console.log('Email sent');
         }
       });
+      */
 
 //sendind mail code end
 
