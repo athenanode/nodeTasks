@@ -1,7 +1,5 @@
 var tasklist = require('../models/tasklist');
 
-
-
 exports.createTaskList = function(request, response) {
     tasklist
     .create({
@@ -15,8 +13,15 @@ exports.createTaskList = function(request, response) {
 
 exports.createTaskListGet = function(request, response) {
     if (request.session.loggedin) {
-      response.render("addTaskList");
+        tasklist.findAll({
+            where : {
+                userId : request.session.userid
+            }
+        }).then(function(tasklists){
+            response.render("addTaskList", {tasklist : tasklists});
+        })
+      
     } else {
       response.render("index");
     }
-  };
+};

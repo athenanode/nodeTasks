@@ -2,6 +2,8 @@ var db = require("../config/dbCon");
 var bcrypt = require("bcrypt");
 var connection = db.connection;
 var userModel = require("../models/user");
+var TaskList = require('../models/tasklist');
+var Task = require('../models/task');
 
 exports.loginUserPost = function(request, response) {
   
@@ -61,13 +63,35 @@ exports.validateSignUp = function(req, res) {
           password: encrypted,
         })
         .then(function() {
-          res.redirect("/");
+          res.redirect('/');
         });
       
 
     });
   }
 };
+
+
+
+exports.adminHome = function(req, res) {
+  
+  userModel.findAll(
+    {
+      include : [ 
+      { model: TaskList, as: 'tasklists'},
+      { model: Task, as: 'tasks'}]  
+    }
+  ).then(users=>{
+
+    // var datatable = [];
+    // users.forEach(function(value, index){
+    //   datatable[index] = {name : value.name, email : value.email, tlcount : value.tasklists.length, tcount : value.tasks.length}
+    // });
+    res.render ('home', {user : users});
+    console.log(':::::::::::::'+datatable[0].tcount);
+  });
+
+}
 
 var loginAuth = function (results, request, response) {
     var encPass = results[0].password;
@@ -80,7 +104,7 @@ var loginAuth = function (results, request, response) {
           response.redirect('/admin');  
         }
         else{
-          response.redirect("/home");
+          response.render("home");
         }
         
       } else {

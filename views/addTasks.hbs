@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>add tasklist</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="/javascripts/createTaskList.js"></script>
+
+</head>
+
+<body>
+    <form action="createtask" method="POST">
+        <input name="taskname" placeholder="task name" type="text" required />
+        <input name="desc" placeholder="description" type="text"  />
+        <input name="tasklistid" type="number" value="{{tasklistid}}"/>
+        <button type="submit">create task</button>
+    </form>
+    <div>
+        <table>
+            {{#each tasks}}
+            <tr>
+                <td>{{this.taskname}}</td>
+                <td>{{this.description}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</body>
+
+</html>

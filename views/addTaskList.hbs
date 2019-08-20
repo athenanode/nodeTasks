@@ -14,11 +14,21 @@
         <input name="tasklistname" placeholder="tasklist name" type="text" required />
         <button type="submit">create tasklist</button>
         <button type="button" onclick="addTask()">add task</button>
-        <br/>
+        <br />
         <div id="taskFormDiv">
-            
+
         </div>
     </form>
+    <div>
+
+        <table>
+            {{#each tasklist}}
+            <tr>
+                <td><a href="/tasklist/{{this.id}}">{{this.tasklistname}}</a></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 </body>
 
 </html>

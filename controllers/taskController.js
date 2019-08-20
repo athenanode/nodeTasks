@@ -5,7 +5,7 @@ exports.createTask = function (req , res) {
         title : req.body.title,
         description : req.body.description,
         userId : req.session.userid,
-        tasklistId : req.params.tasklistId
+        tasklistId : req.body.tasklistId
     }).then(function(){
         res.end('Created')
     })
@@ -17,6 +17,6 @@ exports.getTasks = function(request, response){
             tasklistId : request.params.id
         }
     }).then(function(tasks){
-        response.render(tasks);
+        response.render('addTasks', {tasks : tasks, tasklistid : request.params.id});
     });
 }
