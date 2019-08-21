@@ -30,6 +30,8 @@
           }
       {{/each}}
   ];
+  
+  
 </script>
     </head>
     <body>
@@ -43,9 +45,20 @@
                             <ul>                                
                             </ul>
                         </li>                       
-                        <li><a><i class="ti-close"></i> Logout</a></li>
+                        <li><a><i class="ti-close"></i>
+                         </a></li>
                     </ul>
-                </div>
+                    <form action="/logout" method="post">
+
+<button type="submit" class="btn btn-primary btn-lg" >{{#if showTitle}}   Logout  {{/if}}</button>
+
+
+     
+</form>
+
+
+
+                      </div>
             </div>
         </div>
         <!-- /# sidebar -->
@@ -142,7 +155,7 @@
                                 </tbody>
                                    
                            
-                            </table>
+                            </table>                          
                         </div>
                         <!-- /# row -->
                         <div class="row">

@@ -5,18 +5,23 @@ var nodemailer = require('nodemailer');
 var connection = db.connection;
 var userModel = require("../models/user").User;
 
+exports.logoutuser = function (req, res) { 
+  console.log('Destroying session');
+  req.session.destroy(); 
+  res.render("index");
+}
+
 exports.loginUserPost = function(request, response) {
   var email = request.body.email;
   var password = request.body.password;
   //var errors = request.validationErrors();
-
-  connection.query(
-    "SELECT email, password FROM users WHERE email = ?",
-    [email],
-    function(err, results, fields) {
-      if (err) {
-        console.error(err);
-      }
+    connection.query(
+      "SELECT email, password FROM users WHERE email = ?",
+      [email],
+      function(err, results, fields) {
+        if (err) {
+          console.error(err);
+        }
 
       if (results == 0) {
         response.send("Incorrect Username");
@@ -26,7 +31,8 @@ exports.loginUserPost = function(request, response) {
           if (same) {
             request.session.loggedin = true;
             request.session.email = email;
-            response.redirect("/home");
+            response.render("home");
+            //response.redirect("/home");
           } else {
             response.end("Incorrect Password!");
           }
@@ -81,8 +87,7 @@ exports.validateSignUp = function(req, res) {
           email: req.body.email,
           password: password,
         })
-        .then(function() {
-          //let userlist = getUserList();
+        .then(function() {         
 
           connection.query('SELECT * FROM users', (error, results, fields) => 
           {
@@ -96,33 +101,19 @@ exports.validateSignUp = function(req, res) {
                   });
               } else {
                   console.log("Results: ",results);
-                  /*res.send({
-                      "code": 200,
-                      "success": "Database successfully logged"
-                  });*/
+                  
                   connection.query('SELECT * FROM tasks', (error, tasklist, fields) => 
-          {
-
-         
-
-                  res.render('home', {user: results, task: tasklist});
+                  {
+                    
+                    res.render('home', {user: results, task: tasklist,showTitle: true});
                   });          
               }
           });
 
-
-         // res.render("home",{user : userlist});
-           //res.redirect("/home");
         });
 
-    });
-  
-  /*  let getUserList = () => {
-      let list = ["ada","turing","ssss","dddd"];
-      let limt = Math.floor(Math.random()*(list.length - 1 - 0) + 0);
-      return list.slice(limt);
-    }*/
-   
+    });  
+ 
 
 //sendind mail code start
      /* var transporter = nodemailer.createTransport({
