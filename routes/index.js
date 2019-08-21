@@ -5,18 +5,17 @@ var tasklistController = require('../controllers/tasklistController');
 var taskController = require('../controllers/taskController');
 
 /* GET home page. */
-router.get('/', userController.loginUserGet);
+router.get('/', userController.getHomePage );
 router.post('/auth', userController.loginUserPost);
 router.post('/signup', userController.validateSignUp);
 router.post('/createtasklist', tasklistController.createTaskList);
 router.post('/createtask', taskController.createTask);
 router.get('/createtasklist', tasklistController.createTaskListGet);
-router.post('/tasklist', taskController.getTasks);
+// router.post('/deleteTasklist' , tasklistController)
+router.post('/tasklist', taskController.postTasks);
 router.get('/admin', userController.adminHome);
 router.get('/sendEmail', userController.sendEmailGet);
 router.post('/sendEmail', userController.sendEmail);
 router.get('/logout',userController.logoutuser);
-router.get('/*', userController.loginUserGet);
-router.post('/*', userController.loginUserGet);
 
 module.exports = router;

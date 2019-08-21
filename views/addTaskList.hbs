@@ -23,6 +23,7 @@
             {{#each tasklist}}
             <tr>
                 <td onclick="postReq('{{this.id}}')">{{this.tasklistname}}</td>
+                <td onclick="deleteList('{{this.id}}')"><button type="button">Delete</button> </td>
             </tr>
             {{/each}}
         </table>

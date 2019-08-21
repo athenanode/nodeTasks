@@ -1,27 +1,28 @@
-var tasklist = require('../models/tasklist');
+var tasklist = require("../models/tasklist");
 
 exports.createTaskList = function(request, response) {
-    tasklist
+  tasklist
     .create({
-        tasklistname: request.body.tasklistname,
-        userId : request.session.userid
+      tasklistname: request.body.tasklistname,
+      userId: request.session.userid
     })
     .then(function() {
-        response.end('Created!');
+      response.redirect('/createtasklist');
     });
-}
+};
 
 exports.createTaskListGet = function(request, response) {
-    if (request.session.loggedin) {
-        tasklist.findAll({
-            where : {
-                userId : request.session.userid
-            }
-        }).then(function(tasklists){
-            response.render("addTaskList", {tasklist : tasklists});
-        })
-      
-    } else {
-      response.render("index");
-    }
+  tasklist
+    .findAll({
+      where: {
+        userId: request.session.userid
+      }
+    })
+    .then(function(tasklists) {
+      response.render("addTaskList", { tasklist: tasklists });
+    });
 };
+
+exports.deleteTasklist = function(request, response){
+    
+}

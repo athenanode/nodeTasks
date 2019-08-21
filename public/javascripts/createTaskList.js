@@ -18,7 +18,7 @@ function postReq (taskListId) {
         
         const hiddenField = document.createElement('input');
         hiddenField.type = 'hidden';
-        hiddenField.name = 'id';
+        hiddenField.name = 'tasklistid';
         hiddenField.value = taskListId;
   
         form.appendChild(hiddenField);
@@ -26,4 +26,22 @@ function postReq (taskListId) {
   
     document.body.appendChild(form);
     form.submit();
+}
+
+
+function deleteList (taskListId) {
+  const form = document.createElement('form');
+  form.method = 'post';
+  form.action = 'deleteTasklist';
+      
+      const hiddenField = document.createElement('input');
+      hiddenField.type = 'hidden';
+      hiddenField.name = 'tasklistid';
+      hiddenField.value = taskListId;
+
+      form.appendChild(hiddenField);
+   
+
+  document.body.appendChild(form);
+  form.submit();
 }

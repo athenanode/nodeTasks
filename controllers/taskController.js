@@ -7,16 +7,27 @@ exports.createTask = function (req , res) {
         userId : req.session.userid,
         tasklistId : req.body.tasklistid
     }).then(function(){
-        res.end('Created')
+        // task.findAll({
+        //     where : {
+        //         tasklistId : req.body.tasklistid
+        //     }
+        // }).then(function(tasks){
+        //     response.render('addTasks', {tasks : tasks, tasklistid : req.body.tasklistid});
+        // });
+        getTasks(req, res);
     })
 }
 
-exports.getTasks = function(request, response){
+ function getTasks(request, response){
     task.findAll({
         where : {
-            tasklistId : request.body.id
+            tasklistId : request.body.tasklistid
         }
     }).then(function(tasks){
-        response.render('addTasks', {tasks : tasks, tasklistid : request.body.id});
+        response.render('addTasks', {tasks : tasks, tasklistid : request.body.tasklistid});
     });
+}
+
+exports.postTasks = function(request, response){
+    getTasks(request, response);
 }

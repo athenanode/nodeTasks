@@ -17,9 +17,16 @@
     </form>
     <div>
         <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+
+                </tr>
+            </thead>
             {{#each tasks}}
             <tr>
-                <td>{{this.taskname}}</td>
+                <td>{{this.title}}</td>
                 <td>{{this.description}}</td>
             </tr>
             {{/each}}
