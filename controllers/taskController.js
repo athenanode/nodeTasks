@@ -2,10 +2,10 @@ var task = require("../models/task");
 
 exports.createTask = function (req , res) {
     task.create({
-        title : req.body.title,
-        description : req.body.description,
+        title : req.body.taskname,
+        description : req.body.desc,
         userId : req.session.userid,
-        tasklistId : req.body.tasklistId
+        tasklistId : req.body.tasklistid
     }).then(function(){
         res.end('Created')
     })
@@ -14,9 +14,9 @@ exports.createTask = function (req , res) {
 exports.getTasks = function(request, response){
     task.findAll({
         where : {
-            tasklistId : request.params.id
+            tasklistId : request.body.id
         }
     }).then(function(tasks){
-        response.render('addTasks', {tasks : tasks, tasklistid : request.params.id});
+        response.render('addTasks', {tasks : tasks, tasklistid : request.body.id});
     });
 }

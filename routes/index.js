@@ -9,9 +9,14 @@ router.get('/', userController.loginUserGet);
 router.post('/auth', userController.loginUserPost);
 router.post('/signup', userController.validateSignUp);
 router.post('/createtasklist', tasklistController.createTaskList);
-router.post('/tasklist/createtask', taskController.createTask);
+router.post('/createtask', taskController.createTask);
 router.get('/createtasklist', tasklistController.createTaskListGet);
-router.get('/tasklist/:id', taskController.getTasks);
+router.post('/tasklist', taskController.getTasks);
 router.get('/admin', userController.adminHome);
+router.get('/sendEmail', userController.sendEmailGet);
+router.post('/sendEmail', userController.sendEmail);
+router.get('/logout',userController.logoutuser);
+router.get('/*', userController.loginUserGet);
+router.post('/*', userController.loginUserGet);
 
 module.exports = router;

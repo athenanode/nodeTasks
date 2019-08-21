@@ -12,7 +12,7 @@
     <form action="createtask" method="POST">
         <input name="taskname" placeholder="task name" type="text" required />
         <input name="desc" placeholder="description" type="text"  />
-        <input name="tasklistid" type="number" value="{{tasklistid}}"/>
+        <input name="tasklistid" type="hidden" value="{{tasklistid}}"/>
         <button type="submit">create task</button>
     </form>
     <div>
