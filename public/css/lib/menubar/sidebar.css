@@ -8,8 +8,9 @@
 }
 
 .sidebar {
+    margin-top :-54px;
     position: fixed;
-    top: 0px;
+    top: 54px;
     left: 0;
     bottom: 0;
     width: 250px;
@@ -21,7 +22,8 @@
     transform: translateZ(0);
     -webkit-transition: width 300ms ease-in-out;
     transition: width 300ms ease-in-out;
-     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.50);
+    margin-top: -54px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.50);
 }
 
 .sidebar.sidebar-static {

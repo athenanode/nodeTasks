@@ -315,3 +315,31 @@ input[type="password"]:placeholder {
 #signupfrm {
   display: none;
 }
+.logo{
+  height: 30px;
+}
+.header.blue {
+  color:#56baed;
+  border-bottom-color: #56baed;
+}
+.header > [class*="fa fa-"] {
+  margin-right: 2px;
+}
+.green {
+  color: #69aa46 !important;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h4.bigger {
+  font-size: 19px;
+}
+h4.header.blue.lighter.bigger {
+  margin-bottom: 0px;
+  border-bottom-color: #56baed;
+}

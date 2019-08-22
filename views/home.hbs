@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
@@ -26,10 +26,10 @@
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                         </ul>
-                    </li>
-                    <li><a href="logout"><i class="ti-close"></i> Logout</a></li>
+                    </li>                    
                     <li><a href="sendEmail"><i class="ti-close"></i> send email</a></li>
                     <li><a href="createtasklist"><i class="ti-close"></i> Create tasklist</a></li>
+                    <li><a href="logout"><i class="ti-close"></i> Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -40,34 +40,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="float-left">
-                        <div class="hamburger sidebar-toggle">
-                            <span class="line"></span>
-                            <span class="line"></span>
-                            <span class="line"></span>
-                        </div>
+                     <h2>Hello, <span>Welcome Here</span></h2>{{currentUser}}
                     </div>
-                    <div class="float-right">
-                        <ul>
-                            <li class="header-icon dib"><span class="user-avatar">{{currentUser}} <i
-                                        class="ti-angle-down f-s-10"></i></span>
-                                <div class="drop-down dropdown-profile">
-                                    <div class="dropdown-content-heading">
-                                        <span class="text-left">Upgrade Now</span>
-                                        <p class="trial-day">30 Days Trail</p>
-                                    </div>
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
-                                            <li><a href="#"><i class="ti-email"></i> <span>Inbox</span></a></li>
-                                            <li><a href="#"><i class="ti-settings"></i> <span>Setting</span></a></li>
-                                            <li><a href="#"><i class="ti-lock"></i> <span>Lock Screen</span></a></li>
-                                            <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -79,7 +54,7 @@
                     <div class="col-lg-8 p-r-0 title-margin-right">
                         <div class="page-header">
                             <div class="page-title">
-                                <h1>Hello, <span>Welcome Here</span></h1>
+                                <h1>Task List</span></h1>
                             </div>
                         </div>
                     </div>
@@ -102,6 +77,9 @@
                         <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-body">
+
+
+
                                     <h4 class="card-title">Users List</h4>
                                     <table class="table">
                                         <thead>
@@ -125,36 +103,15 @@
                                     </table>
 
                                 </div>
-                                <!-- /# row -->
-                                <div class="row">
-                                </div>
-                                <div class="row">
-                                    <!-- /# column -->
-                                    <div class="col-lg-6">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <!-- /# column -->
-                                    <div class="col-lg-4">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="footer">
-
-                                            </div>
-                                        </div>
-                                    </div>
+                              
+                              
+                               
+                                  
                 </section>
             </div>
         </div>
     </div>
-    <div id="search">
-        <button type="button" class="close">×</button>
-        <form>
-            <input type="search" value="" placeholder="type keyword(s) here" />
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </div>
+ 
     <!-- jquery vendor -->
     <script src="/js/lib/jquery.min.js"></script>
     <script src="/js/lib/jquery.min.js"></script>

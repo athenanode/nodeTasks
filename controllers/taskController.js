@@ -17,6 +17,7 @@ exports.getTasks = function(request, response){
             tasklistId : request.body.id
         }
     }).then(function(tasks){
-        response.render('addTasks', {tasks : tasks, tasklistid : request.body.id});
+        console.log(tasks);
+        response.render('addTasks', {tasks : tasks, tasklistid : request.body.id,});
     });
 }
