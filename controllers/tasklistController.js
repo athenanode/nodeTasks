@@ -24,5 +24,23 @@ exports.createTaskListGet = function(request, response) {
 };
 
 exports.deleteTasklist = function(request, response){
-    
+  tasklist.destroy({
+    where : {
+      id : request.body.tasklistid
+    }
+  })
+  .then(function(){
+    response.redirect('/createtasklist');
+  });
+}
+
+exports.updateTasklist = function(request, response){
+  tasklist.update(
+    {tasklistname : request.body.updatedName},
+    {where : {
+      id : request.body.tasklistid
+    }})
+    .then(function(){
+      response.redirect('/createtasklist');
+    })
 }

@@ -8,17 +8,25 @@ var Task = sequelize.define("tasks", {
   description : Sequelize.STRING
 });
 
-  User.hasMany(Task);
-  Task.belongsTo(User, {
+  User.hasMany(Task, {
     onDelete: "CASCADE",
     foreignKey: {
       allowNull: false
     }
   });
+  Task.belongsTo(User, {
+    foreignKey: {
+      allowNull: false
+    }
+  });
 
-  TaskList.hasMany(Task);
-  Task.belongsTo(TaskList, {
+  TaskList.hasMany(Task, {
     onDelete: "CASCADE",
+    foreignKey: {
+      allowNull: false
+    }
+  });
+  Task.belongsTo(TaskList, {
     foreignKey: {
       allowNull: false
     }

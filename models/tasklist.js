@@ -6,9 +6,13 @@ var Tasklist = sequelize.define("tasklist", {
   tasklistname: Sequelize.STRING
 });
 
-  User.hasMany(Tasklist);
-  Tasklist.belongsTo(User, {
+  User.hasMany(Tasklist, {
     onDelete: "CASCADE",
+    foreignKey: {
+      allowNull: false
+    }
+  });
+  Tasklist.belongsTo(User, {
     foreignKey: {
       allowNull: false
     }

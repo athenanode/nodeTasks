@@ -21,9 +21,10 @@
 
         <table>
             {{#each tasklist}}
-            <tr>
-                <td onclick="postReq('{{this.id}}')">{{this.tasklistname}}</td>
-                <td onclick="deleteList('{{this.id}}')"><button type="button">Delete</button> </td>
+            <tr id = "{{this.id}}">
+                <td onclick="postReq('{{this.id}}')" style="cursor: pointer">{{this.tasklistname}}</td>
+                <td onclick="deleteList('{{this.id}}')" style="cursor: pointer"><button type="button">Delete</button> </td>
+                <td onclick="editList('{{this.id}}')" style="cursor: pointer"><button type="button">Edit</button> </td>
             </tr>
             {{/each}}
         </table>

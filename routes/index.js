@@ -11,11 +11,12 @@ router.post('/signup', userController.validateSignUp);
 router.post('/createtasklist', tasklistController.createTaskList);
 router.post('/createtask', taskController.createTask);
 router.get('/createtasklist', tasklistController.createTaskListGet);
-// router.post('/deleteTasklist' , tasklistController)
+router.post('/deleteTasklist' , tasklistController.deleteTasklist);
 router.post('/tasklist', taskController.postTasks);
 router.get('/admin', userController.adminHome);
 router.get('/sendEmail', userController.sendEmailGet);
 router.post('/sendEmail', userController.sendEmail);
 router.get('/logout',userController.logoutuser);
-
+router.post('/deleteTask', taskController.deleteTask);
+router.post('/updateTask' , taskController.updateTask);
 module.exports = router;

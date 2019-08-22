@@ -25,9 +25,11 @@
                 </tr>
             </thead>
             {{#each tasks}}
-            <tr>
+            <tr id = "{{this.id}}">
                 <td>{{this.title}}</td>
                 <td>{{this.description}}</td>
+                <td onclick="deleteTask('{{this.id}}', '{{this.tasklistId}}')" style="cursor: pointer"><button type="button">Delete</button></td>
+                <td onclick="editTask('{{this.id}}', '{{this.tasklistId}}')" style="cursor: pointer"><button type="button">Edit</button> </td>
             </tr>
             {{/each}}
         </table>

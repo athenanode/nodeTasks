@@ -49,6 +49,7 @@ exports.getHomePage = function(request, response){
   }
 }
 
+
 exports.validateSignUp = function(req, res) {
   var password;
   userModel
