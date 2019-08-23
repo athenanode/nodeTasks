@@ -19,7 +19,7 @@ exports.loginUserPost = function(request, response) {
     })
     .then(users => {
       if (users.length == 0) {
-        response.end("User does not exists!");
+          response.render("index", { error : 'User does not exists!. Please try again'});
       } else {
         loginAuth(users, request, response);
       }
@@ -31,7 +31,7 @@ exports.loginUserGet = function(request, response, next) {
     response.render("index");
   }
   else{
-    if(!request.session.isAdmin && (request.originalUrl.toLowerCase() == '/admin'|| request.originalUrl.toLowerCase() == '/sendmail')){
+    if(!request.session.isAdmin && (request.originalUrl.toLowerCase() == '/admin'|| request.originalUrl.toLowerCase() == '/sendemail')){
       response.send(createError(404));
     }
     else{
@@ -49,6 +49,7 @@ exports.getHomePage = function(request, response){
   }
 }
 
+
 exports.validateSignUp = function(req, res) {
   var password;
   userModel
@@ -61,7 +62,7 @@ exports.validateSignUp = function(req, res) {
       if (users.length == 0) {
         createUser();
       } else {
-        res.end("User already exists!");
+        res.render("index", { error : 'User already exists!. Please try again'});
       }
     });
 
@@ -95,7 +96,7 @@ exports.adminHome = function(req, res) {
       ]
     })
     .then(users => {
-      res.render("home", { user: users , currentUser : req.session.email});
+      res.render("home", { user: users , currentUser : req.session.email,currentUsername:req.session.name});
     });
 };
 
@@ -104,6 +105,7 @@ var loginAuth = function(results, request, response) {
   bcrypt.compare(request.body.password, encPass, function(err, same) {
     if (same) {
       request.session.loggedin = true;
+       request.session.name = results[0].name
       request.session.email = request.body.email;
       request.session.userid = results[0].id;
       if (results[0].id == 1) {

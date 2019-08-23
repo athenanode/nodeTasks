@@ -22,14 +22,10 @@
                 <div class="logo"><a href="index.html"><span>Dashboard</span></a>
                 </div>
                 <ul>
-                    <li><a class="sidebar-sub-toggle"><i class="ti-target"></i> Users <span
-                                class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                        </ul>
-                    </li>
-                    <li><a href="logout"><i class="ti-close"></i> Logout</a></li>
+                                      
                     <li><a href="sendEmail"><i class="ti-close"></i> send email</a></li>
-                    <li><a href="createtasklist"><i class="ti-close"></i> Create tasklist</a></li>
+                    <li><a href="createtasklist"><i class="ti-close"></i> Task</a></li>
+                     <li><a href="logout"><i class="ti-close"></i> Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -48,22 +44,14 @@
                     </div>
                     <div class="float-right">
                         <ul>
-                            <li class="header-icon dib"><span class="user-avatar">{{currentUser}} <i
+                            <li class="header-icon dib"><span class="user-avatar">{{currentUsername}} <i
                                         class="ti-angle-down f-s-10"></i></span>
                                 <div class="drop-down dropdown-profile">
                                     <div class="dropdown-content-heading">
                                         <span class="text-left">Upgrade Now</span>
                                         <p class="trial-day">30 Days Trail</p>
                                     </div>
-                                    <div class="dropdown-content-body">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
-                                            <li><a href="#"><i class="ti-email"></i> <span>Inbox</span></a></li>
-                                            <li><a href="#"><i class="ti-settings"></i> <span>Setting</span></a></li>
-                                            <li><a href="#"><i class="ti-lock"></i> <span>Lock Screen</span></a></li>
-                                            <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
-                                        </ul>
-                                    </div>
+                                   
                                 </div>
                             </li>
                         </ul>
@@ -103,17 +91,16 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Users List</h4>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
+    <table id="tasklist">
+            <thead class="taskheading">
+                <tr>
+                      <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Tasklists</th>
                                                 <th>Tasks</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{#each user}}
+                </tr>
+            </thead>
+              {{#each user}}
                                             <tr>
                                                 <td>{{this.name}}</td>
                                                 <td>{{this.email}}</td>
@@ -121,9 +108,7 @@
                                                 <td>{{this.tasks.length}} </td>
                                             </tr>
                                             {{/each}}
-                                        </tbody>
-                                    </table>
-
+        </table>
                                 </div>
                                 <!-- /# row -->
                                 <div class="row">

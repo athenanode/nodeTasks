@@ -19,10 +19,28 @@ exports.createTaskListGet = function(request, response) {
       }
     })
     .then(function(tasklists) {
-      response.render("addTaskList", { tasklist: tasklists });
+      response.render("addTaskList", { tasklist: tasklists , isAdmin : request.session.isAdmin,currentUsername : request.session.name});
     });
 };
 
 exports.deleteTasklist = function(request, response){
-    
+  tasklist.destroy({
+    where : {
+      id : request.body.tasklistid
+    }
+  })
+  .then(function(){
+    response.redirect('/createtasklist');
+  });
+}
+
+exports.updateTasklist = function(request, response){
+  tasklist.update(
+    {tasklistname : request.body.updatedName},
+    {where : {
+      id : request.body.tasklistid
+    }})
+    .then(function(){
+      response.redirect('/createtasklist');
+    })
 }
