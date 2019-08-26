@@ -20,7 +20,7 @@
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
-                <div class="logo"><a href="index.html"><span>Dashboard</span></a>
+                <div class="logo"><a href="{{#if isAdmin}} admin{{else}} createtasklist{{/if}}"><span>Dashboard</span></a>
                 </div>
                 <ul>
                                       
@@ -60,7 +60,7 @@
                         <div class="page-header">
                             <div class="page-title">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{#if isAdmin}} admin{{else}} createtasklist{{/if}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Home</li>
                                 </ol>
                             </div>

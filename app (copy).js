@@ -8,15 +8,19 @@ var bodyParser= require('body-parser');
 var indexRouter = require('./routes/index');
 var userController = require('./controllers/userController');
 var app = express();
+var expressHbs = require('express-handlebars');
 
 
 
+
+app.engine('.hbs', expressHbs({defaultLayout: 'index', extname: '.hbs'}));
+app.set('view engine', '.hbs');
 
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+/* app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs'); */
 
 app.use(logger('dev'));
 app.use(session({

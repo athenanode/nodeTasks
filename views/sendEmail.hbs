@@ -19,7 +19,7 @@
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
-                <div class="logo"><a href="index.html"><span>Dashboard</span></a>
+                <div class="logo"><a href="{{#if isAdmin}} admin{{else}} createtasklist{{/if}}"><span>Dashboard</span></a>
                 </div>
                 <ul>                                        
                     <li><a href="sendEmail"><i class="ti-close"></i> send email</a></li>
@@ -57,7 +57,7 @@
                         <div class="page-header">
                             <div class="page-title">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" ><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item" ><a href="{{#if isAdmin}} admin{{else}} createtasklist{{/if}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active">CreateTaskList</li>
                                 </ol>
                             </div>
@@ -71,15 +71,7 @@
                         <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="errormsg">{{error}}</div>
-                                        <form action="createtasklist" method="POST">
-                                            <input name="tasklistname" placeholder="tasklist name" type="text" required class="taskname"/>
-                                            <button type="submit" id="addtask">Add</button>
-                                            <br />
-                                            <div id="taskFormDiv">
-                                            </div>
-                                        </form>
-                                    <div>
+                                   
         <form method="POST" action="sendEmail">
             <input type="email" placeholder="email" name="email" required/>
             <input type="text" placeholder="Subject" name="subject" required/>

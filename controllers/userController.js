@@ -71,18 +71,38 @@ exports.validateSignUp = function(req, res) {
       if (err) {
         console.error(err);
       }
+      userModel.findAll().then(function(users){
+        console.log(users.length);
+        if(users.length == 0){
+          userModel
+          .create({
+            id : 1,
+            name: req.body.name,
+            email: req.body.email,
+            password: encrypted
+          })
+          .then(function() {
+            // res.session.loggedin = false;
+            sendAEmail(req.body.email,'welcome to athena task app','you are in heaven now',res)
+            res.redirect("/");
+          });
+        }
+        else{
+          userModel
+          .create({
+            name: req.body.name,
+            email: req.body.email,
+            password: encrypted
+          })
+          .then(function() {
+            // res.session.loggedin = false;
+            sendAEmail(req.body.email,'welcome to athena task app','you are in heaven now',res)
+            res.redirect("/");
+          });
 
-      userModel
-        .create({
-          name: req.body.name,
-          email: req.body.email,
-          password: encrypted
-        })
-        .then(function() {
-          // res.session.loggedin = false;
-          sendAEmail(req.body.email,'welcome to athena task app','you are in heaven now',res)
-          res.redirect("/");
-        });
+        }
+      });
+    
     });
   }
 };
@@ -116,7 +136,8 @@ var loginAuth = function(results, request, response) {
         response.redirect('/createtasklist');
       }
     } else {
-      response.end(" Incorrect Password!");
+      response.render("index", { error : 'Incorrect Password!. Please try again'});
+      //response.end(" Incorrect Password!");
     }
   });
 };

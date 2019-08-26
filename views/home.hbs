@@ -19,7 +19,7 @@
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
         <div class="nano">
             <div class="nano-content">
-                <div class="logo"><a href="index.html"><span>Dashboard</span></a>
+                <div class="logo"><a href="{{#if isAdmin}} admin{{else}} createtasklist{{/if}}"><span>Dashboard</span></a>
                 </div>
                 <ul>
                                       
@@ -76,7 +76,7 @@
                         <div class="page-header">
                             <div class="page-title">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{#if isAdmin}} admin{{else}} createtasklist{{/if}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Home</li>
                                 </ol>
                             </div>
@@ -91,55 +91,32 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Users List</h4>
-    <table id="tasklist">
-            <thead class="taskheading">
-                <tr>
-                      <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Tasklists</th>
-                                                <th>Tasks</th>
-                </tr>
-            </thead>
-              {{#each user}}
-                                            <tr>
-                                                <td>{{this.name}}</td>
-                                                <td>{{this.email}}</td>
-                                                <td>{{this.tasklists.length}}</td>
-                                                <td>{{this.tasks.length}} </td>
-                                            </tr>
+                                    <table id="tasklist">
+                                            <thead class="taskheading">
+                                                <tr>
+                                                    <th>Name</th>
+                                                                                <th>Email</th>
+                                                                                <th>Tasklists</th>
+                                                                                <th>Tasks</th>
+                                                </tr>
+                                            </thead>
+                                            {{#each user}}
+                                                <tr>
+                                                    <td>{{this.name}}</td>
+                                                    <td>{{this.email}}</td>
+                                                    <td>{{this.tasklists.length}}</td>
+                                                    <td>{{this.tasks.length}} </td>
+                                                </tr>
                                             {{/each}}
-        </table>
+                                    </table>
                                 </div>
-                                <!-- /# row -->
-                                <div class="row">
-                                </div>
-                                <div class="row">
-                                    <!-- /# column -->
-                                    <div class="col-lg-6">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <!-- /# column -->
-                                    <div class="col-lg-4">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="footer">
-
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>   
                 </section>
             </div>
         </div>
-    </div>
-    <div id="search">
-        <button type="button" class="close">×</button>
-        <form>
-            <input type="search" value="" placeholder="type keyword(s) here" />
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </div>
+    </div>  
     <!-- jquery vendor -->
     <script src="/js/lib/jquery.min.js"></script>
     <script src="/js/lib/jquery.min.js"></script>
@@ -152,5 +129,4 @@
     <script src="assets/js/scripts.js"></script>
     <!-- scripit init-->
 </body>
-
 </html>
